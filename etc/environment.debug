@@ -1,0 +1,5 @@
+SLUG=[appname]
+PID_FILE=/var/venv/$SLUG/$SLUG.pid
+HOST=127.0.0.1
+PORT=16666
+MANAGE_COMMAND="runserver"

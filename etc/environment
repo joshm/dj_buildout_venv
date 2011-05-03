@@ -1,0 +1,6 @@
+HOMEDIR=/path/to/project/home/dir
+SLUG=[appname]
+PID_FILE=$HOMEDIR/venv/$SLUG/$SLUG.pid
+HOST=127.0.0.1
+PORT=16666
+MANAGE_COMMAND="runfcgi host=$HOST port=$PORT pidfile=$PID_FILE daemonize=false maxchildren=10 maxspare=5 minspare=2 method=threaded outlog=$HOMEDIR/venv/logs/${SLUG}.stdout errlog=$HOMDIR/venv/logs/${SLUG}.stderr"
