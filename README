@@ -1,0 +1,4 @@
+Depending on devel/prod/staging, you will need to make sure monitor.py and sys_start.py are in the bin dir
+All of the app paths and project paths will need to be modified to load buildout environment properly
+
+The entire system is meant to be run with supervisor
