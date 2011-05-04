@@ -1,0 +1,37 @@
+fastcgi.debug = 1
+$HTTP["host"] == "[domainname]" {
+
+server.document-root = "/venv/[appname]"
+fastcgi.server = (
+    "/[appname].fcgi" => (
+        (
+            "host" => "127.0.0.1",
+            "port" => 16666,
+            "check-local" => "disable",
+            "max-procs" => 4,
+            "min-procs" => 4,
+        )
+    )
+)
+server.errorlog = "/venv/logs/error.log"
+server.accesslog = "/venv/logs/access.log"
+
+alias.url = (
+    "/favicon.ico" => "/venv/[appname]/media/favicon.ico",
+    "/admin_media" => "/venv/[appname]/parts/django/django/contrib/admin/media/",
+    "/media" => "/venv/[appname]/media/",
+)
+
+url.rewrite-once = (
+    "^(/favicon.ico.*)$" => "/$1",
+    "^(/admin_media.*)$" => "/$1",
+    "^(/media.*)$" => "/$1",
+    "^(/.*)$" => "/[appname].fcgi$1",
+)
+
+expire.url = (
+    "/favicon.ico" => "access 1 seconds",
+    "/admin_media" => "access 1 seconds",
+    "/media" => "access 1 seconds",
+)
+}
